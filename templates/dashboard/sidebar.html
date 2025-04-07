@@ -3,7 +3,7 @@
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="#">
-            <img src="{% static 'images/icon/logo.png' %}" alt="Cool Admin" />
+            <img src="{% static 'images/icon/logo.png' %}" alt="Cool Admin"/>
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
@@ -13,24 +13,17 @@
                     <a href="{% url 'home_page' %}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="{% url 'faculty_list' %}"><i class="fas fa-chart-bar"></i>Faculty</a>
+                    <a href="{% url 'category_list' %}"><i class="fas fa-chart-bar"></i>Categories</a>
                 </li>
                 <li>
-                    <a href="{% url 'chair_list' %}"><i class="fas fa-chart-bar"></i>Chair</a>
+                    <a href="{% url 'product_list' %}"><i class="fas fa-chart-bar"></i>Products</a>
                 </li>
                 <li>
-                    <a href="{% url 'subject_list' %}"><i class="fas fa-chart-bar"></i>Subject</a>
+                    <a href="{% url 'user_list' %}"><i class="fas fa-chart-bar"></i>Users</a>
                 </li>
                 <li>
-                    <a href="{% url 'teacher_list' %}"><i class="fas fa-chart-bar"></i>Teacher</a>
+                    <a href="{% url 'order_list' %}"><i class="fas fa-chart-bar"></i>Orders</a>
                 </li>
-                <li>
-                    <a href="{% url 'group_list' %}"><i class="fas fa-chart-bar"></i>Group</a>
-                </li>
-                <li>
-                    <a href="{% url 'student_list' %}"><i class="fas fa-chart-bar"></i>Student</a>
-                </li>
-
             </ul>
         </nav>
     </div>
