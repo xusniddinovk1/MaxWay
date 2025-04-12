@@ -30,9 +30,31 @@ def logout_page(request):
 def main_dashboard(request):
     categories = Category.objects.all()
     products = Product.objects.all()
-    customer = Customer.objects.all()
+    customers = Customer.objects.all()
     orders = Order.objects.all()
     categories_product = []
     table_list = services.get_table()
     print(table_list)
     for category in categories:
+        categories_product.append(
+            {
+                "category": category.name,
+                "product": len(Product.objects.filter(categoty_id=category.id))
+            }
+        )
+
+        ctx = {
+            "counts":
+                {
+                    "categories": len(categories),
+                    "products": len(products),
+                    "customers": len(customers),
+                    "orders": len(orders),
+                },
+            "category_product": categories_product,
+            "table_list": table_list
+        }
+
+        return render(request, 'dashboard/index.html', ctx)
+
+
