@@ -1,6 +1,10 @@
+from django.contrib.gis.db.backends.oracle.schema import OracleGISSchemaEditor
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from food.models import *
+from . import services
+from . import forms
 
 
 def login_required_decorator(func):
@@ -21,3 +25,14 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect("login_page")
+
+
+def main_dashboard(request):
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    customer = Customer.objects.all()
+    orders = Order.objects.all()
+    categories_product = []
+    table_list = services.get_table()
+    print(table_list)
+    for category in categories:

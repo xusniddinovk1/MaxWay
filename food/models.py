@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Category(models.Model):
+    objects = None
     name = models.CharField(max_length=100, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -10,6 +11,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    objects = None
     name = models.CharField(max_length=100, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
@@ -23,6 +25,7 @@ class Product(models.Model):
 
 
 class Customer(models.Model):
+    objects = None
     first_name = models.CharField(max_length=200, null=False, blank=False)
     last_name = models.CharField(max_length=200, null=False, blank=False)
     phone_number = models.CharField(max_length=100, null=False, blank=False, unique=True)
@@ -33,6 +36,7 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
+    objects = None
     payment = models.IntegerField(null=False, blank=False)
     status = models.IntegerField(null=False, blank=False)
     address = models.CharField(max_length=255, null=False, blank=False)
@@ -41,6 +45,7 @@ class Order(models.Model):
 
 
 class OrderProduct(models.Model):
+    objects = None
     count = models.IntegerField(null=False, blank=False)
     price = models.IntegerField(null=False, blank=False)
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
