@@ -114,7 +114,7 @@ def product_list(request):
 @login_required_decorator
 def product_create(request):
     model = Product()
-    form = ProductForm(request.POST or None, instance=model)
+    form = ProductForm(request.POST or None,request.FILES or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
         return redirect('product_list')
