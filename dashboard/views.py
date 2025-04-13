@@ -26,7 +26,7 @@ def logout_page(request):
     logout(request)
     return redirect("login_page")
 
-
+@login_required_decorator
 def main_dashboard(request):
     categories = Category.objects.all()
     products = Product.objects.all()
@@ -92,7 +92,49 @@ def category_edit(request, pk):
     return render(request, 'dashboard/category/form.html', ctx)
 
 
-def category_delete(request):
-    model = Category()
+def category_delete(request, pk):
+    model = Category.objects.get(pk=pk)
     model.delete()
     return redirect('category_list')
+
+
+
+def product_list(request):
+    products = Product.objects.all()
+    ctx = {
+        "products": products
+    }
+    return render(request, 'dashboard/product/list.html', ctx)
+
+
+def product_create(request):
+    model = Product()
+    form = ProductForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('product_list')
+    ctx = {
+        "model": model,
+        "form": form
+    }
+    return render(request, 'dashboard/product/form.html', ctx)
+
+
+def product_edit(request):
+    model = Product.objects.get(pk=pk)
+    form = ProductForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('product_list')
+    ctx = {
+        "model": model,
+        "form": form
+    }
+    return render(request, 'dashboard/product/form.html', ctx)
+
+
+
+def product_delete(request, pk):
+    model = Product.objects.get(pk=pk)
+    model.delete()
+    return redirect('product_list')
