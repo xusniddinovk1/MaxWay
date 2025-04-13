@@ -39,7 +39,7 @@ def main_dashboard(request):
         categories_product.append(
             {
                 "category": category.name,
-                "product": len(Product.objects.filter(categoty_id=category.id))
+                "product": len(Product.objects.filter(category_id=category.id))
             }
         )
 
