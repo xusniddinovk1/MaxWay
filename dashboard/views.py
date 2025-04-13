@@ -17,7 +17,7 @@ def login_page(request):
         if user is not None:
             login(request, user)
             return redirect("main_dashboard")
-        return render(request, "dashboard/login.html")
+    return render(request, "dashboard/login.html")
 
 
 @login_required_decorator
