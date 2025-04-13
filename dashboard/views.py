@@ -43,19 +43,19 @@ def main_dashboard(request):
             }
         )
 
-        ctx = {
-            "counts":
-                {
-                    "categories": len(categories),
-                    "products": len(products),
-                    "customers": len(customers),
-                    "orders": len(orders),
-                },
-            "category_product": categories_product,
-            "table_list": table_list
-        }
+    ctx = {
+        "counts":
+            {
+                "categories": len(categories),
+                "products": len(products),
+                "customers": len(customers),
+                "orders": len(orders),
+            },
+        "category_product": categories_product,
+        "table_list": table_list
+    }
 
-        return render(request, 'dashboard/index.html', ctx)
+    return render(request, 'dashboard/index.html', ctx)
 
 
 @login_required_decorator
