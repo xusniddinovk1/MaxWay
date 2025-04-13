@@ -21,7 +21,7 @@ def dict_fetchone(cursor):
 
 def get_order_by_user(id):
     with closing(connection.cursor()) as cursor:
-        cursor.execute(""" SELECT food_order.id, food_customer.first_name,food_customer.last_name, food_order.address, food_order.payment_type,food_order.status,food_order.created_at from food_order 
+        cursor.execute(""" SELECT food_order.id, food_customer.first_name,food_customer.last_name, food_order.address, food_order.payment,food_order.status,food_order.created_at from food_order 
                             INNER JOIN food_customer on food_customer.id=food_order.customer_id 
                             where food_order.customer_id =%s""", [id])
         order = dict_fetchall(cursor)
