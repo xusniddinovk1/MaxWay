@@ -1,8 +1,6 @@
-from django.contrib.gis.db.backends.oracle.schema import OracleGISSchemaEditor
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from food.models import *
 from . import services
 from forms import *
 
@@ -127,7 +125,7 @@ def product_create(request):
 
 
 @login_required_decorator
-def product_edit(request):
+def product_edit(request, pk):
     model = Product.objects.get(pk=pk)
     form = ProductForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
