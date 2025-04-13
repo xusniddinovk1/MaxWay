@@ -26,6 +26,7 @@ def logout_page(request):
     logout(request)
     return redirect("login_page")
 
+
 @login_required_decorator
 def main_dashboard(request):
     categories = Category.objects.all()
@@ -58,6 +59,7 @@ def main_dashboard(request):
         return render(request, 'dashboard/index.html', ctx)
 
 
+@login_required_decorator
 def category_list(request):
     categories = Category.objects.all()
     ctx = {
@@ -66,6 +68,7 @@ def category_list(request):
     return render(request, 'dashboard/category/list.html', ctx)
 
 
+@login_required_decorator
 def category_create(request):
     model = Category()
     form = CategoryForm(request.POST or None, instance=model)
@@ -79,6 +82,7 @@ def category_create(request):
     return render(request, 'dashboard/category/form.html', ctx)
 
 
+@login_required_decorator
 def category_edit(request, pk):
     model = Category.objects.get(pk=pk)
     form = CategoryForm(request.POST or None, instance=model)
@@ -92,13 +96,14 @@ def category_edit(request, pk):
     return render(request, 'dashboard/category/form.html', ctx)
 
 
+@login_required_decorator
 def category_delete(request, pk):
     model = Category.objects.get(pk=pk)
     model.delete()
     return redirect('category_list')
 
 
-
+@login_required_decorator
 def product_list(request):
     products = Product.objects.all()
     ctx = {
@@ -107,6 +112,7 @@ def product_list(request):
     return render(request, 'dashboard/product/list.html', ctx)
 
 
+@login_required_decorator
 def product_create(request):
     model = Product()
     form = ProductForm(request.POST or None, instance=model)
@@ -120,6 +126,7 @@ def product_create(request):
     return render(request, 'dashboard/product/form.html', ctx)
 
 
+@login_required_decorator
 def product_edit(request):
     model = Product.objects.get(pk=pk)
     form = ProductForm(request.POST or None, instance=model)
@@ -133,7 +140,7 @@ def product_edit(request):
     return render(request, 'dashboard/product/form.html', ctx)
 
 
-
+@login_required_decorator
 def product_delete(request, pk):
     model = Product.objects.get(pk=pk)
     model.delete()
