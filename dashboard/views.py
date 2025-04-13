@@ -143,3 +143,73 @@ def product_delete(request, pk):
     model = Product.objects.get(pk=pk)
     model.delete()
     return redirect('product_list')
+
+
+def user_list(request):
+    users = Customer.objects.all()
+    ctx = {
+        "users": users
+    }
+    return render(request, 'dashboard/user/list.html', ctx)
+
+
+@login_required_decorator
+def user_create(request):
+    model = Customer()
+    form = UserForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('user_list')
+    ctx = {
+        "model": model,
+        "form": form
+    }
+    return render(request, 'dashboard/user/form.html', ctx)
+
+
+def user_edit(request, pk):
+    model = Customer.objects.get(pk=pk)
+    form = forms.UserForm(request.POST or None, instance=model)
+
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('user_list')
+    ctx = {
+        'model': model,
+        'form': form
+    }
+    return render(request, 'dashboard/user/form.html', ctx)
+
+
+@login_required_decorator
+def user_delete(request, pk):
+    model = Customer.objects.get(pk=pk)
+    model.delete()
+    return redirect("category_list")
+
+
+@login_required_decorator
+def order_list(request):
+    orders = Order.objects.all()
+    ctx = {
+        'orders': orders
+    }
+    return render(request, "dashboard/order/list.html", ctx)
+
+
+@login_required_decorator
+def customer_order_list(request, id):
+    customer_orders = services.get_order_by_user(id=id)
+    ctx = {
+        'customer_orders': customer_orders
+    }
+    return render(request, "dashboard/customer_order/list.html", ctx)
+
+
+@login_required_decorator
+def order_product_list(request, id):
+    order_products = services.get_product_by_order(id=id)
+    ctx = {
+        'order_product': order_products
+    }
+    return render(request, "dashboard/order_product/list.html", ctx)
