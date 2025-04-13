@@ -1,4 +1,3 @@
-
 {% extends 'dashboard/base.html' %}
 {% load static %}
 {% block content %}
@@ -40,7 +39,7 @@
                                     {% for category in categories %}
                                     <tr>
                                         <td>{{ category.id }}</td>
-                                        <td>{{ category.title }}</td>
+                                        <td>{{ category.name }}</td>
                                         <td>{{ category.created_at }}</td>
 <!--                                        <td>{{ category.product_count }}</td>-->
 

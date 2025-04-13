@@ -1,4 +1,3 @@
-
 {% extends 'dashboard/base.html' %}
 {% load static %}
 {% load mathfilters %}
@@ -38,10 +37,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for pro in productorders %}
+                                    {% for pro in order_products %}
                                     <tr>
 
-                                        <td>{{ pro.title }}</td>
+                                        <td>{{ pro.name }}</td>
                                         <td>{{ pro.price }}</td>
                                         <td>{{ pro.count }}</td>
                                         <td>{{ pro.count|mul:pro.price }}</td>
