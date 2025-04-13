@@ -11,8 +11,8 @@ def login_required_decorator(func):
 
 def login_page(request):
     if request.POST:
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+        username = request.POST.get("username", None)
+        password = request.POST.get("password", None)
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -20,6 +20,7 @@ def login_page(request):
         return render(request, "dashboard/login.html")
 
 
+@login_required_decorator
 def logout_page(request):
     logout(request)
     return redirect("login_page")
