@@ -225,7 +225,7 @@
                             <div class="box">
                                 <div class="box__img"><img class="img" src="/media/{{ order.product.image }}" alt=""></div>
                                 <div class="box__content">
-                                    <div class="box__title">{{ order.product.title}} </div>
+                                    <div class="box__title">{{ order.product.name}} </div>
                                     <div class="box__text">{{ order.product.description}}</div>
                                     <div class="box__const">
                                         <div class="box__cost">{{order.count}} x {{ order.product.price}} UZS</div>
@@ -254,7 +254,7 @@
         <div class="container">
             <div class="filter">
                 <button class="active" data-id="all">Barchasi</button> {% for c in categories %}
-                <button data-id="{{c.title|lower}}">{{c.title}}</button> {% endfor %}
+                <button data-id="{{c.name|lower}}">{{c.name}}</button> {% endfor %}
             </div>
             <div class="mob__button">
                 <button class="mobFilt">
@@ -269,16 +269,16 @@
 
             <div class="slide">
                 {% for c in categories %}
-                <div class="big__title {{ c.title|lower }}">{{ c.title }}</div>
-                <div class="row {{ c.title|lower }}">
+                <div class="big__title {{ c.name|lower }}">{{ c.title }}</div>
+                <div class="row {{ c.name|lower }}">
                     {% for p in products %} {% if p.category_id == c.id%}
                     <div class="col-6 col-md-12 col-xs-12">
-                        <div class="item {{ c.title|lower }}">
+                        <div class="item {{ c.name|lower }}">
                             <div class="box">
                                 <div class="box__img"><img id="output" style="width:120px;" src="/media/{{ p.image }}">
                                 </div>
                                 <div class="box__content">
-                                    <div class="box__title">{{ p.title}}
+                                    <div class="box__title">{{ p.name}}
                                     </div>
                                     <div class="box__text">{{ p.description }}
                                     </div>
@@ -297,7 +297,7 @@
                     {% endif %} {% endfor %}
 
                 </div>
-                <div class="slide__btn {{ c.title|lower }}" data-id="{{ c.title|lower }}">
+                <div class="slide__btn {{ c.name|lower }}" data-id="{{ c.name|lower }}">
                     <button>Ko‘proq ko‘rish</button>
                 </div>
                 {% endfor %}
