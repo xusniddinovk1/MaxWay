@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from food.models import *
 from . import services
-from . import forms
+from forms import *
 
 
 def login_required_decorator(func):
@@ -58,3 +58,41 @@ def main_dashboard(request):
         return render(request, 'dashboard/index.html', ctx)
 
 
+def category_list(request):
+    categories = Category.objects.all()
+    ctx = {
+        "categories": categories
+    }
+    return render(request, 'dashboard/category/list.html', ctx)
+
+
+def category_create(request):
+    model = Category()
+    form = CategoryForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('category_list')
+    ctx = {
+        "model": model,
+        "form": form
+    }
+    return render(request, 'dashboard/category/form.html', ctx)
+
+
+def category_edit(request, pk):
+    model = Category.objects.get(pk=pk)
+    form = CategoryForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('category_list')
+    ctx = {
+        "model": model,
+        "form": form
+    }
+    return render(request, 'dashboard/category/form.html', ctx)
+
+
+def category_delete(request):
+    model = Category()
+    model.delete()
+    return redirect('category_list')
